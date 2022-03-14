@@ -8,4 +8,9 @@
     <h1>index</h1>
 </body>
 <script src="/test/bundle.js"></script>
+<script>
+    const templateStr = `我叫{{name}}今年{{age}}岁`
+    const data = {}
+    myMustache.render(templateStr,data)
+</script>
 </html>
