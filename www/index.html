@@ -9,7 +9,20 @@
 </body>
 <script src="/test/bundle.js"></script>
 <script>
-    const templateStr = `我叫{{name}}今年{{age}}岁`
+    const templateStr = `
+    <ul>
+        {{#serveDate}}
+            <li className="peopleData">
+                <p className="name">{{name}}的基本信息</p>
+                <div>
+                    <p className="age">年龄：{{age}}</p>
+                    <p className="sex">性别：{{sex}}</p>
+                    <p className="hobby">爱好：{{hobby}}</p>
+                </div>
+            </li>
+        {{/serveDate}}
+    </ul>
+    `
     const data = {}
     myMustache.render(templateStr,data)
 </script>
