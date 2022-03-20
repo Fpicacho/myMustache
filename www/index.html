@@ -5,25 +5,38 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>index</h1>
+<h1>index</h1>
 </body>
 <script src="/test/bundle.js"></script>
 <script>
     const templateStr = `
-    <ul>
+    <ol>
         {{#serveDate}}
-            <li className="peopleData">
-                <p className="name">{{name}}的基本信息</p>
-                <div>
-                    <p className="age">年龄：{{age}}</p>
-                    <p className="sex">性别：{{sex}}</p>
-                    <p className="hobby">爱好：{{hobby}}</p>
-                </div>
-            </li>
+            <li>{{item.name}}的爱好是</li>
+            <ol>
+                {{#item.hobby}}
+                    <li>{{.}}</li>
+                {{/item.hobby}}
+            </ol>
         {{/serveDate}}
-    </ul>
+    </ol>
     `
-    const data = {}
-    myMustache.render(templateStr,data)
+    const data = {
+        serveDate: [
+            {
+                name: "F_picacho",
+                age: 18,
+                sex: "男",
+                hobby: ['唱', '跳', '篮']
+            },
+            {
+                name: "王花花",
+                age: 17,
+                sex: "女",
+                hobby: '看动画'
+            }
+        ]
+    }
+    myMustache.render(templateStr, data)
 </script>
 </html>
