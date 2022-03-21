@@ -3,40 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body,p{
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-<h1>index</h1>
+<div class="app"></div>
 </body>
 <script src="/test/bundle.js"></script>
-<script>
-    const templateStr = `
+<script type="text/x-handlebars-template" id="template">
     <ol>
-        {{#serveDate}}
-            <li>{{item.name}}的爱好是</li>
-            <ol>
-                {{#item.hobby}}
-                    <li>{{.}}</li>
-                {{/item.hobby}}
-            </ol>
-        {{/serveDate}}
+        <div>
+            <ul>
+                {{#saveData}}
+                    <li>姓名:{{name}},年龄：{{age}}</li>
+                    <ul>
+                        <p>爱好：</p>
+                        {{#hobby}}
+                            <li>{{.}}</li>
+                        {{/hobby}}
+                    </ul>
+                {{/saveData}}
+            </ul>
+        </div>
     </ol>
-    `
+</script>
+<script>
+    const template = document.querySelector("#template").innerHTML;
+    const app = document.querySelector(".app")
     const data = {
-        serveDate: [
-            {
-                name: "F_picacho",
-                age: 18,
-                sex: "男",
-                hobby: ['唱', '跳', '篮']
-            },
-            {
-                name: "王花花",
-                age: 17,
-                sex: "女",
-                hobby: '看动画'
-            }
+        saveData: [
+            {name: 'F_picacho', age: 18, sex: '男', hobby: ['抽烟', '喝酒', '烫头']},
+            {name: '王花花', age: 17, sex: '女', hobby: ['麻将', '扑克', '牌九']},
+            {name: '卡莎小厥', age: 16, sex: '女', hobby: ['K头']},
         ]
     }
-    myMustache.render(templateStr, data)
+    app.innerHTML = myMustache.render(template, data)
+
 </script>
 </html>

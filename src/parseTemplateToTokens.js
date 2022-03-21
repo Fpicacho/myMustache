@@ -10,7 +10,7 @@ export default function parseTemplateToTokens(templateStr) {
         // 收集开始标记
         words = Scanner.scanUntil("{{");
         if (words !== '') {
-            tokens.push(['text', words])
+            tokens.push(['text', words.replace(/\s/g,'')])
         }
         Scanner.scan("{{")
         words = Scanner.scanUntil("}}");
